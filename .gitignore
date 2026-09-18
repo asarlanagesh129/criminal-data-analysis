@@ -16,4 +16,4 @@ models/area_random_forest.pkl
 models/decision_tree_balanced.pkl
 models/logistic_regression_balanced.pkl
 models/random_forest_balanced.pkl
-models/random_forest_v2.pkl
+models/random_forest_v2.pklmodels/area_random_forest_tuned.pkl
