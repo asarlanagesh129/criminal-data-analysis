@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact - Crime Area Prediction System</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            background: #172b4d;
+            color: white;
+            padding: 20px 8%;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .navigation a {
+            color: white;
+            text-decoration: none;
+            padding: 9px 13px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .navigation a:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            background: #172b4d;
+            color: white;
+            text-align: center;
+            padding: 70px 25px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            color: #dbe5f2;
+            font-size: 18px;
+        }
+
+        /* =========================
+           MAIN SECTION
+        ========================= */
+
+        .section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 70px 25px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            color: #172b4d;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #666;
+        }
+
+        /* =========================
+           CONTACT CARDS
+        ========================= */
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .contact-icon {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .contact-card h3 {
+            color: #172b4d;
+            margin-bottom: 10px;
+        }
+
+        .contact-card p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        /* =========================
+           PROJECT INFORMATION
+        ========================= */
+
+        .project-info {
+            margin-top: 40px;
+            background: white;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .project-info h2 {
+            color: #172b4d;
+            margin-bottom: 15px;
+        }
+
+        .project-info p {
+            color: #555;
+            margin-bottom: 12px;
+        }
+
+        .project-info ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .project-info li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .project-info li:last-child {
+            border-bottom: none;
+        }
+
+        /* =========================
+           NAVIGATION BUTTONS
+        ========================= */
+
+        .buttons {
+            text-align: center;
+            margin-top: 35px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #172b4d;
+            color: white;
+            text-decoration: none;
+            padding: 13px 24px;
+            border-radius: 6px;
+            margin: 5px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: #243f6b;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #0f1e36;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 25px;
+            font-size: 14px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .navbar {
+                justify-content: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER / NAVIGATION
+========================= -->
+
+<header>
+
+    <div class="navbar">
+
+        <div class="logo">
+            Crime Area Prediction System
+        </div>
+
+        <div class="navigation">
+
+            <a href="/">
+                🏠 Home
+            </a>
+
+            <a href="/predict">
+                🎯 Predict
+            </a>
+
+            <a href="/dashboard">
+                📊 Dashboard
+            </a>
+
+            <a href="/work">
+                ⚙️ How It Works
+            </a>
+
+            <a href="/about">
+                ℹ️ About
+            </a>
+
+            <a href="/contact">
+                📞 Contact
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     HERO SECTION
+========================= -->
+
+<section class="hero">
+
+    <h1>
+        Contact
+    </h1>
+
+    <p>
+        Information about the project and its development.
+    </p>
+
+</section>
+
+
+<!-- =========================
+     CONTACT INFORMATION
+========================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            Project Information
+        </h2>
+
+        <p>
+            Get information about the developer and
+            the Crime Area Prediction System.
+        </p>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+
+        <!-- DEVELOPER -->
+
+        <div class="contact-card">
+
+            <div class="contact-icon">
+                👨‍💻
+            </div>
+
+            <h3>
+                Developer
+            </h3>
+
+            <p>
+                Nagesh
+            </p>
+
+        </div>
+
+
+        <!-- PROJECT -->
+
+        <div class="contact-card">
+
+            <div class="contact-icon">
+                💻
+            </div>
+
+            <h3>
+                Project
+            </h3>
+
+            <p>
+                Criminal Data Analysis and Crime Area
+                Prediction Using Machine Learning
+            </p>
+
+        </div>
+
+
+        <!-- TECHNOLOGY -->
+
+        <div class="contact-card">
+
+            <div class="contact-icon">
+                🤖
+            </div>
+
+            <h3>
+                Technology
+            </h3>
+
+            <p>
+                Python, Pandas, Scikit-learn,
+                Random Forest and Flask
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- PROJECT DETAILS -->
+
+    <div class="project-info">
+
+        <h2>
+            About This Project
+        </h2>
+
+        <p>
+            This project was developed to analyze historical
+            crime data and use machine learning to predict
+            the likely community area of a crime.
+        </p>
+
+        <p>
+            The system uses a trained Random Forest model
+            and a Flask web application to provide an
+            interactive prediction interface.
+        </p>
+
+        <ul>
+
+            <li>
+                📊 Historical crime data analysis
+            </li>
+
+            <li>
+                🔍 Data cleaning and exploration
+            </li>
+
+            <li>
+                ⚙️ Feature engineering
+            </li>
+
+            <li>
+                🤖 Random Forest machine learning
+            </li>
+
+            <li>
+                🎯 Community area prediction
+            </li>
+
+            <li>
+                🌐 Flask web application
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- BUTTONS -->
+
+    <div class="buttons">
+
+        <a href="/" class="button">
+            🏠 Back to Home
+        </a>
+
+        <a href="/predict" class="button">
+            🎯 Make a Prediction
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+        Crime Area Prediction System
+    </p>
+
+    <p>
+        Criminal Data Analysis and Crime Area Prediction
+        Using Machine Learning
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

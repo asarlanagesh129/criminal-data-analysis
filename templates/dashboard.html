@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crime Analysis Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef2f7;
+            color: #222;
+        }
+
+        .header {
+            background: #1f2937;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .header p {
+            color: #d1d5db;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+        }
+
+        .intro {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .charts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .chart-card h2 {
+            font-size: 18px;
+            margin-top: 0;
+        }
+
+        .chart-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .navigation a {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            margin: 5px;
+        }
+
+        .navigation a:hover {
+            background: #1d4ed8;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 25px;
+            color: #6b7280;
+        }
+
+        @media (max-width: 800px) {
+            .charts {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Crime Analysis Dashboard</h1>
+    <p>Chicago Crime Data Analysis — 2018 to 2025</p>
+</div>
+
+<div class="container">
+
+    <div class="intro">
+
+        <h2>About the Dashboard</h2>
+
+        <p>
+            This dashboard presents historical crime patterns
+            identified from the Chicago crime dataset.
+        </p>
+
+        <p>
+            The analysis includes yearly trends, crime types,
+            monthly patterns, hourly patterns, locations,
+            community areas and other exploratory analysis.
+        </p>
+
+    </div>
+
+
+    <div class="charts">
+
+        <div class="chart-card">
+
+            <h2>Crimes by Year</h2>
+
+            <img src="{{ url_for('static', filename='charts/crimes_by_year.png') }}">
+
+        </div>
+
+
+        <div class="chart-card">
+
+            <h2>Top Crime Types</h2>
+
+            <img src="{{ url_for('static', filename='charts/top_15_crime_types.png') }}">
+
+        </div>
+
+
+        <div class="chart-card">
+
+            <h2>Crimes by Month</h2>
+
+            <img src="{{ url_for('static', filename='charts/crimes_by_month.png') }}">
+
+        </div>
+
+
+        <div class="chart-card">
+
+            <h2>Crimes by Hour</h2>
+
+            <img src="{{ url_for('static', filename='charts/crimes_by_hour.png') }}">
+
+        </div>
+
+
+        <div class="chart-card">
+
+            <h2>Top Crime Locations</h2>
+
+            <img src="{{ url_for('static', filename='charts/top_15_crime_locations.png') }}">
+
+        </div>
+
+
+        <div class="chart-card">
+
+            <h2>Crime Hotspots</h2>
+
+            <img src="{{ url_for('static', filename='charts/top_15_crime_hotspots.png') }}">
+
+        </div>
+
+    </div>
+
+
+    <div class="navigation">
+
+        <a href="/">
+            Crime Area Prediction
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="footer">
+
+    Criminal Data Analysis and Crime Area Prediction Using Machine Learning
+
+</div>
+
+</body>
+</html>

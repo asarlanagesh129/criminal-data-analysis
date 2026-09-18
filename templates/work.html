@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>How It Works - Crime Analysis</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #222;
+        }
+
+        .navbar {
+            background: #1f2937;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+
+        .navbar a:hover {
+            color: #60a5fa;
+        }
+
+        .header {
+            background: #2563eb;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+            font-size: 36px;
+        }
+
+        .header p {
+            font-size: 18px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            color: #1f2937;
+            margin-top: 0;
+        }
+
+        .section p {
+            line-height: 1.7;
+            color: #4b5563;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .step {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #2563eb;
+        }
+
+        .step h3 {
+            margin-top: 0;
+            color: #2563eb;
+        }
+
+        .technology {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .tech-box {
+            background: #eef2ff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .footer {
+            background: #1f2937;
+            color: #d1d5db;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 800px) {
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .technology {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar a {
+                display: inline-block;
+                margin: 7px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+
+<div class="navbar">
+
+    <a href="/">Home</a>
+
+    <a href="/predict">Predict</a>
+
+    <a href="/work">Work</a>
+
+    <a href="/dashboard">Dashboard</a>
+
+    <a href="/about">About</a>
+
+    <a href="/contact">Contact</a>
+
+</div>
+
+
+<!-- Header -->
+
+<div class="header">
+
+    <h1>How It Works</h1>
+
+    <p>
+        Criminal Data Analysis and Crime Area Prediction Using Machine Learning
+    </p>
+
+</div>
+
+
+<div class="container">
+
+    <!-- Introduction -->
+
+    <div class="section">
+
+        <h2>How the System Works</h2>
+
+        <p>
+            This project analyzes historical crime data and uses
+            Machine Learning to predict the community area associated
+            with a given crime-related input.
+        </p>
+
+        <p>
+            The system takes information such as date, time, police
+            district, beat, ward, geographical coordinates and
+            location description as input. The trained machine
+            learning model processes these features and predicts
+            the corresponding community area.
+        </p>
+
+    </div>
+
+
+    <!-- Steps -->
+
+    <div class="section">
+
+        <h2>Project Workflow</h2>
+
+        <div class="steps">
+
+            <div class="step">
+
+                <h3>1. Data Collection</h3>
+
+                <p>
+                    Historical crime records are collected from the
+                    Chicago crime dataset. The dataset contains
+                    information about crime type, date, location,
+                    district, ward and geographical coordinates.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <h3>2. Data Cleaning</h3>
+
+                <p>
+                    Missing values, duplicate records and inconsistent
+                    data are handled during the preprocessing stage.
+                    The data is prepared for further analysis.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <h3>3. Exploratory Data Analysis</h3>
+
+                <p>
+                    Crime patterns are analyzed using different
+                    charts and visualizations such as yearly,
+                    monthly, hourly and location-based crime trends.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <h3>4. Feature Engineering</h3>
+
+                <p>
+                    Useful features are created from the original
+                    data, including day of week, weekend indicator,
+                    time period and season.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <h3>5. Model Training</h3>
+
+                <p>
+                    A Random Forest machine learning model is trained
+                    using selected crime-related features to learn
+                    patterns associated with community areas.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <h3>6. Prediction</h3>
+
+                <p>
+                    The user enters crime-related information through
+                    the web form. The trained model processes the
+                    information and predicts a community area.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Technologies -->
+
+    <div class="section">
+
+        <h2>Technologies Used</h2>
+
+        <div class="technology">
+
+            <div class="tech-box">
+                Python
+            </div>
+
+            <div class="tech-box">
+                Pandas
+            </div>
+
+            <div class="tech-box">
+                Scikit-learn
+            </div>
+
+            <div class="tech-box">
+                Random Forest
+            </div>
+
+            <div class="tech-box">
+                Flask
+            </div>
+
+            <div class="tech-box">
+                HTML & CSS
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Machine Learning -->
+
+    <div class="section">
+
+        <h2>Machine Learning Model</h2>
+
+        <p>
+            The project uses the Random Forest algorithm for
+            community area prediction. Random Forest combines
+            multiple decision trees and uses their combined
+            predictions to produce the final result.
+        </p>
+
+        <p>
+            The trained model is saved as a
+            <strong>.pkl</strong> file and loaded by the Flask
+            application when the system starts.
+        </p>
+
+    </div>
+
+
+    <!-- Flask -->
+
+    <div class="section">
+
+        <h2>Role of Flask</h2>
+
+        <p>
+            Flask is used as the backend framework of the project.
+            It connects the HTML interface with the Python machine
+            learning model.
+        </p>
+
+        <p>
+            When the user submits the prediction form, Flask receives
+            the input values, prepares the data and sends it to the
+            trained Random Forest model. The prediction is then
+            displayed on the web page.
+        </p>
+
+    </div>
+
+
+</div>
+
+
+<!-- Footer -->
+
+<div class="footer">
+
+    Criminal Data Analysis and Crime Area Prediction Using Machine Learning
+
+</div>
+
+</body>
+</html>

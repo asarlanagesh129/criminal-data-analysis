@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Crime Area Prediction</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            background: #172b4d;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        .navigation {
+            background: white;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .navigation a {
+            text-decoration: none;
+            color: #172b4d;
+            font-weight: bold;
+            padding: 10px 16px;
+            border-radius: 6px;
+        }
+
+        .navigation a:hover {
+            background: #172b4d;
+            color: white;
+        }
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .form-card {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .form-card h2 {
+            text-align: center;
+            color: #172b4d;
+            margin-bottom: 10px;
+        }
+
+        .form-description {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #172b4d;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .predict-button {
+            background: #172b4d;
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            font-size: 17px;
+            font-weight: bold;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .predict-button:hover {
+            background: #0f1e36;
+        }
+
+        /* =========================
+           RESULT
+        ========================= */
+
+        .result {
+            margin-top: 30px;
+            padding: 30px;
+            background: #eef5ff;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #cbdcf5;
+        }
+
+        .result h2 {
+            color: #172b4d;
+            margin-bottom: 10px;
+        }
+
+        .prediction-value {
+            font-size: 48px;
+            font-weight: bold;
+            color: #172b4d;
+            margin: 15px 0;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .result-box {
+            background: white;
+            padding: 15px;
+            border-radius: 7px;
+        }
+
+        .result-box strong {
+            display: block;
+            margin-bottom: 7px;
+        }
+
+        /* =========================
+           ERROR
+        ========================= */
+
+        .error {
+            margin-top: 25px;
+            padding: 15px;
+            background: #ffe8e8;
+            color: #a00000;
+            border-radius: 7px;
+            text-align: center;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            margin-top: 50px;
+            background: #172b4d;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-card {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <h1>Crime Area Prediction System</h1>
+
+    <p>
+        Criminal Data Analysis and Crime Area Prediction Using Machine Learning
+    </p>
+
+</header>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<div class="navigation">
+
+    <a href="/">
+        🏠 Home
+    </a>
+
+    <a href="/predict">
+        🎯 Predict
+    </a>
+
+    <a href="/dashboard">
+        📊 Dashboard
+    </a>
+
+    <a href="/work">
+        ⚙️ How It Works
+    </a>
+
+    <a href="/about">
+        ℹ️ About
+    </a>
+
+    <a href="/contact">
+        📞 Contact
+    </a>
+
+</div>
+
+
+<!-- =========================
+     MAIN CONTENT
+========================= -->
+
+<div class="container">
+
+    <div class="form-card">
+
+        <h2>Crime Area Prediction</h2>
+
+        <p class="form-description">
+            Enter the crime-related information below to predict the
+            likely community area using the trained machine learning model.
+        </p>
+
+
+        <!-- =========================
+             PREDICTION FORM
+        ========================= -->
+
+        <form action="/predict" method="POST">
+
+            <div class="form-grid">
+
+
+                <!-- YEAR -->
+
+                <div class="form-group">
+
+                    <label for="year">
+                        Year
+                    </label>
+
+                    <input
+                        type="number"
+                        id="year"
+                        name="year"
+                        min="2018"
+                        max="2025"
+                        value="2025"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- MONTH -->
+
+                <div class="form-group">
+
+                    <label for="month">
+                        Month
+                    </label>
+
+                    <input
+                        type="number"
+                        id="month"
+                        name="month"
+                        min="1"
+                        max="12"
+                        value="6"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DAY -->
+
+                <div class="form-group">
+
+                    <label for="day">
+                        Day
+                    </label>
+
+                    <input
+                        type="number"
+                        id="day"
+                        name="day"
+                        min="1"
+                        max="31"
+                        value="15"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- HOUR -->
+
+                <div class="form-group">
+
+                    <label for="hour">
+                        Hour (0–23)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="hour"
+                        name="hour"
+                        min="0"
+                        max="23"
+                        value="14"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DISTRICT -->
+
+                <div class="form-group">
+
+                    <label for="district">
+                        District
+                    </label>
+
+                    <input
+                        type="number"
+                        id="district"
+                        name="district"
+                        min="1"
+                        max="61"
+                        value="1"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- BEAT -->
+
+                <div class="form-group">
+
+                    <label for="beat">
+                        Beat
+                    </label>
+
+                    <input
+                        type="number"
+                        id="beat"
+                        name="beat"
+                        min="111"
+                        max="6100"
+                        value="111"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- WARD -->
+
+                <div class="form-group">
+
+                    <label for="ward">
+                        Ward
+                    </label>
+
+                    <input
+                        type="number"
+                        id="ward"
+                        name="ward"
+                        min="1"
+                        max="50"
+                        value="1"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- LATITUDE -->
+
+                <div class="form-group">
+
+                    <label for="latitude">
+                        Latitude
+                    </label>
+
+                    <input
+                        type="number"
+                        id="latitude"
+                        name="latitude"
+                        step="any"
+                        value="41.88"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- LONGITUDE -->
+
+                <div class="form-group">
+
+                    <label for="longitude">
+                        Longitude
+                    </label>
+
+                    <input
+                        type="number"
+                        id="longitude"
+                        name="longitude"
+                        step="any"
+                        value="-87.63"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- LOCATION -->
+
+                <div class="form-group full-width">
+
+                    <label for="location_description">
+                        Location Description
+                    </label>
+
+                    <select
+                        id="location_description"
+                        name="location_description"
+                        required
+                    >
+
+                        <option value="">
+                            Select Location
+                        </option>
+
+                        <option value="STREET">
+                            STREET
+                        </option>
+
+                        <option value="APARTMENT">
+                            APARTMENT
+                        </option>
+
+                        <option value="RESIDENCE">
+                            RESIDENCE
+                        </option>
+
+                        <option value="SIDEWALK">
+                            SIDEWALK
+                        </option>
+
+                        <option value="SMALL RETAIL STORE">
+                            SMALL RETAIL STORE
+                        </option>
+
+                        <option value="RESTAURANT">
+                            RESTAURANT
+                        </option>
+
+                        <option value="PARKING LOT / GARAGE (NON RESIDENTIAL)">
+                            PARKING LOT / GARAGE
+                        </option>
+
+                        <option value="ALLEY">
+                            ALLEY
+                        </option>
+
+                        <option value="GAS STATION">
+                            GAS STATION
+                        </option>
+
+                        <option value="OTHER">
+                            OTHER
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 PREDICT BUTTON
+            ========================= -->
+
+            <div class="button-container">
+
+                <button
+                    type="submit"
+                    class="predict-button"
+                >
+                    🎯 Predict Crime Area
+                </button>
+
+            </div>
+
+        </form>
+
+
+        <!-- =========================
+             PREDICTION RESULT
+        ========================= -->
+
+        {% if prediction is defined %}
+
+        <div class="result">
+
+            <h2>
+                🎯 Prediction Result
+            </h2>
+
+            <p>
+                Predicted Community Area
+            </p>
+
+            <div class="prediction-value">
+                {{ prediction }}
+            </div>
+
+
+            <div class="result-grid">
+
+                <div class="result-box">
+
+                    <strong>
+                        📅 Day
+                    </strong>
+
+                    {{ day_name }}
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <strong>
+                        🕐 Time Period
+                    </strong>
+
+                    {{ time_period }}
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <strong>
+                        🌤️ Season
+                    </strong>
+
+                    {{ season }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- =========================
+             ERROR MESSAGE
+        ========================= -->
+
+        {% if error %}
+
+        <div class="error">
+
+            <strong>
+                ⚠️ Error
+            </strong>
+
+            <p>
+                {{ error }}
+            </p>
+
+        </div>
+
+        {% endif %}
+
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+        Crime Area Prediction System
+    </p>
+
+    <p>
+        Machine Learning Based Criminal Data Analysis
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

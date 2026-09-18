@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Crime Area Prediction System</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            background: #172b4d;
+            color: white;
+            padding: 20px 8%;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .navigation a {
+            color: white;
+            text-decoration: none;
+            padding: 9px 13px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .navigation a:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* =========================
+           HERO SECTION
+        ========================= */
+
+        .hero {
+            background: #172b4d;
+            color: white;
+            padding: 80px 8% 100px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #7dd3fc;
+        }
+
+        .hero p {
+            font-size: 19px;
+            max-width: 720px;
+            color: #dbe5f2;
+            margin-bottom: 35px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .primary-button,
+        .secondary-button {
+            display: inline-block;
+            padding: 14px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .primary-button {
+            background: white;
+            color: #172b4d;
+        }
+
+        .secondary-button {
+            border: 1px solid white;
+            color: white;
+        }
+
+        .primary-button:hover {
+            background: #e8eef7;
+        }
+
+        .secondary-button:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* =========================
+           COMMON SECTION
+        ========================= */
+
+        .section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 70px 25px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 30px;
+            color: #172b4d;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        /* =========================
+           INTRODUCTION
+        ========================= */
+
+        .intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            color: #172b4d;
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+
+        .intro-text p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .info-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .info-box h3 {
+            color: #172b4d;
+            margin-bottom: 18px;
+        }
+
+        .info-box ul {
+            list-style: none;
+        }
+
+        .info-box li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-box li:last-child {
+            border-bottom: none;
+        }
+
+        /* =========================
+           DATASET SECTION
+        ========================= */
+
+        .dataset-section {
+            background: #eef3f9;
+        }
+
+        .dataset-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .dataset-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .dataset-card h3 {
+            color: #172b4d;
+            margin-bottom: 18px;
+            font-size: 21px;
+        }
+
+        .dataset-card p {
+            color: #555;
+            margin-bottom: 12px;
+        }
+
+        .dataset-details {
+            list-style: none;
+        }
+
+        .dataset-details li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dataset-details li:last-child {
+            border-bottom: none;
+        }
+
+        .dataset-details strong {
+            color: #172b4d;
+        }
+
+        .column-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .column {
+            background: #f1f5f9;
+            color: #172b4d;
+            padding: 9px 13px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .dataset-process {
+            margin-top: 25px;
+        }
+
+        .dataset-process h3 {
+            color: #172b4d;
+            margin-bottom: 15px;
+        }
+
+        .process-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .process-item {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .process-item .number {
+            width: 38px;
+            height: 38px;
+            line-height: 38px;
+            margin: 0 auto 10px;
+            background: #172b4d;
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+
+        .process-item h4 {
+            color: #172b4d;
+            margin-bottom: 5px;
+        }
+
+        .process-item p {
+            color: #666;
+            font-size: 13px;
+        }
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .feature-icon {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: #172b4d;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        /* =========================
+           TECHNOLOGIES
+        ========================= */
+
+        .technology-section {
+            background: white;
+        }
+
+        .technologies {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tech {
+            background: #f1f5f9;
+            color: #172b4d;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           WORKFLOW
+        ========================= */
+
+        .workflow {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .step {
+            text-align: center;
+            background: white;
+            padding: 25px 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        .step-number {
+            width: 45px;
+            height: 45px;
+            line-height: 45px;
+            margin: 0 auto 15px;
+            background: #172b4d;
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+
+        .step h3 {
+            color: #172b4d;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* =========================
+           CALL TO ACTION
+        ========================= */
+
+        .cta {
+            background: #172b4d;
+            color: white;
+            text-align: center;
+            padding: 70px 25px;
+        }
+
+        .cta h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: #dbe5f2;
+            max-width: 650px;
+            margin: 0 auto 25px;
+        }
+
+        .cta a {
+            display: inline-block;
+            background: white;
+            color: #172b4d;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .cta a:hover {
+            background: #e8eef7;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #0f1e36;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 25px;
+            font-size: 14px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .intro {
+                grid-template-columns: 1fr;
+            }
+
+            .dataset-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .workflow {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .process-list {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .navbar {
+                justify-content: center;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .workflow {
+                grid-template-columns: 1fr;
+            }
+
+            .process-list {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 55px;
+                padding-bottom: 65px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER / NAVIGATION
+========================= -->
+
+<header>
+
+    <div class="navbar">
+
+        <div class="logo">
+            Crime Area Prediction System
+        </div>
+
+        <div class="navigation">
+
+            <a href="/">
+                🏠 Home
+            </a>
+
+            <a href="/predict">
+                🎯 Predict
+            </a>
+
+            <a href="/dashboard">
+                📊 Dashboard
+            </a>
+
+            <a href="/work">
+                ⚙️ How It Works
+            </a>
+
+            <a href="/about">
+                ℹ️ About
+            </a>
+
+            <a href="/contact">
+                📞 Contact
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     HERO SECTION
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Criminal Data Analysis &
+            <span>Crime Area Prediction</span>
+        </h1>
+
+        <p>
+            A machine learning based system for analyzing
+            crime data and predicting the likely community
+            area using historical crime information.
+        </p>
+
+        <div class="buttons">
+
+            <a
+                href="/predict"
+                class="primary-button"
+            >
+                🎯 Start Prediction
+            </a>
+
+            <a
+                href="/dashboard"
+                class="secondary-button"
+            >
+                📊 View Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROJECT OVERVIEW
+========================= -->
+
+<section class="section">
+
+    <div class="intro">
+
+        <div class="intro-text">
+
+            <h2>
+                About the Project
+            </h2>
+
+            <p>
+                This project focuses on criminal data analysis
+                and crime area prediction using machine learning.
+                Historical crime records are analyzed to identify
+                patterns and useful relationships within the data.
+            </p>
+
+            <p>
+                A Random Forest machine learning model is used
+                to predict the community area based on selected
+                crime-related information such as date, time,
+                district, beat, ward, geographical coordinates,
+                and location description.
+            </p>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <h3>
+                Project Highlights
+            </h3>
+
+            <ul>
+
+                <li>📊 Historical Crime Data Analysis</li>
+
+                <li>🔍 Data Cleaning and Exploration</li>
+
+                <li>⚙️ Feature Engineering</li>
+
+                <li>🤖 Random Forest Machine Learning Model</li>
+
+                <li>🎯 Community Area Prediction</li>
+
+                <li>🌐 Flask Web Application</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DATASET & DETAILS
+========================= -->
+
+<section class="dataset-section">
+
+    <div class="section">
+
+        <div class="section-title">
+
+            <h2>
+                Dataset & Details
+            </h2>
+
+            <p>
+                The project uses historical crime records
+                for data analysis, feature engineering and
+                machine learning based community area prediction.
+            </p>
+
+        </div>
+
+
+        <div class="dataset-grid">
+
+
+            <!-- DATASET OVERVIEW -->
+
+            <div class="dataset-card">
+
+                <h3>
+                    📊 Dataset Overview
+                </h3>
+
+                <p>
+                    The dataset contains historical crime-related
+                    information. The records include information
+                    about when and where crimes occurred, along
+                    with location and crime-related attributes.
+                </p>
+
+                <p>
+                    The dataset is processed before training the
+                    machine learning model. Missing values,
+                    duplicate records and unsuitable data are
+                    handled during the data preparation stage.
+                </p>
+
+            </div>
+
+
+            <!-- DATASET INFORMATION -->
+
+            <div class="dataset-card">
+
+                <h3>
+                    📋 Dataset Information
+                </h3>
+
+                <ul class="dataset-details">
+
+                    <li>
+                        <strong>Dataset Type:</strong>
+                        Historical Crime Dataset
+                    </li>
+
+                    <li>
+                        <strong>Geographic Area:</strong>
+                        Chicago, Illinois
+                    </li>
+
+                    <li>
+                        <strong>Data Domain:</strong>
+                        Criminal / Crime Data
+                    </li>
+
+                    <li>
+                        <strong>Prediction Target:</strong>
+                        Community Area
+                    </li>
+
+                    <li>
+                        <strong>Machine Learning Model:</strong>
+                        Random Forest
+                    </li>
+
+                    <li>
+                        <strong>Application:</strong>
+                        Crime Area Prediction
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <!-- IMPORTANT COLUMNS -->
+
+        <div class="dataset-card" style="margin-top: 25px;">
+
+            <h3>
+                🗂️ Important Dataset Columns
+            </h3>
+
+            <p>
+                The following attributes are important for
+                analysis and prediction in the project:
+            </p>
+
+            <div class="column-list">
+
+                <div class="column">
+                    Date
+                </div>
+
+                <div class="column">
+                    Year
+                </div>
+
+                <div class="column">
+                    Month
+                </div>
+
+                <div class="column">
+                    Day
+                </div>
+
+                <div class="column">
+                    Hour
+                </div>
+
+                <div class="column">
+                    District
+                </div>
+
+                <div class="column">
+                    Beat
+                </div>
+
+                <div class="column">
+                    Ward
+                </div>
+
+                <div class="column">
+                    Latitude
+                </div>
+
+                <div class="column">
+                    Longitude
+                </div>
+
+                <div class="column">
+                    Location Description
+                </div>
+
+                <div class="column">
+                    Community Area
+                </div>
+
+                <div class="column">
+                    Crime Type
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DATA PROCESSING -->
+
+        <div class="dataset-process">
+
+            <h3>
+                ⚙️ How the Dataset is Used
+            </h3>
+
+            <div class="process-list">
+
+
+                <div class="process-item">
+
+                    <div class="number">
+                        1
+                    </div>
+
+                    <h4>
+                        Data Cleaning
+                    </h4>
+
+                    <p>
+                        Remove duplicates, handle missing
+                        values and prepare the data.
+                    </p>
+
+                </div>
+
+
+                <div class="process-item">
+
+                    <div class="number">
+                        2
+                    </div>
+
+                    <h4>
+                        Feature Engineering
+                    </h4>
+
+                    <p>
+                        Create useful features such as
+                        day, weekend, time period and season.
+                    </p>
+
+                </div>
+
+
+                <div class="process-item">
+
+                    <div class="number">
+                        3
+                    </div>
+
+                    <h4>
+                        Model Training
+                    </h4>
+
+                    <p>
+                        Train the Random Forest model using
+                        the prepared crime data.
+                    </p>
+
+                </div>
+
+
+                <div class="process-item">
+
+                    <div class="number">
+                        4
+                    </div>
+
+                    <h4>
+                        Prediction
+                    </h4>
+
+                    <p>
+                        Predict the community area from
+                        the entered crime-related details.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SYSTEM FEATURES
+========================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            System Features
+        </h2>
+
+        <p>
+            The application combines data analysis,
+            machine learning and a web interface.
+        </p>
+
+    </div>
+
+
+    <div class="features">
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📊
+            </div>
+
+            <h3>
+                Crime Analysis
+            </h3>
+
+            <p>
+                Explore crime trends by year, month,
+                hour, crime type and location.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🤖
+            </div>
+
+            <h3>
+                Machine Learning
+            </h3>
+
+            <p>
+                A trained Random Forest model is used
+                for community area prediction.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🎯
+            </div>
+
+            <h3>
+                Prediction
+            </h3>
+
+            <p>
+                Enter crime-related details and receive
+                a predicted community area.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TECHNOLOGIES
+========================= -->
+
+<section class="technology-section">
+
+    <div class="section">
+
+        <div class="section-title">
+
+            <h2>
+                Technologies Used
+            </h2>
+
+            <p>
+                Technologies and tools used to develop
+                the project.
+            </p>
+
+        </div>
+
+
+        <div class="technologies">
+
+            <div class="tech">
+                Python
+            </div>
+
+            <div class="tech">
+                Pandas
+            </div>
+
+            <div class="tech">
+                Scikit-learn
+            </div>
+
+            <div class="tech">
+                Random Forest
+            </div>
+
+            <div class="tech">
+                Flask
+            </div>
+
+            <div class="tech">
+                HTML
+            </div>
+
+            <div class="tech">
+                CSS
+            </div>
+
+            <div class="tech">
+                JavaScript
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROJECT WORKFLOW
+========================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            Project Workflow
+        </h2>
+
+        <p>
+            The system follows a sequence of data processing
+            and machine learning steps.
+        </p>
+
+    </div>
+
+
+    <div class="workflow">
+
+
+        <div class="step">
+
+            <div class="step-number">
+                1
+            </div>
+
+            <h3>
+                Data Collection
+            </h3>
+
+            <p>
+                Collect historical crime records
+                for analysis.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                2
+            </div>
+
+            <h3>
+                Data Processing
+            </h3>
+
+            <p>
+                Clean the dataset and prepare
+                relevant features.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                3
+            </div>
+
+            <h3>
+                Model Training
+            </h3>
+
+            <p>
+                Train the Random Forest model
+                using prepared data.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                4
+            </div>
+
+            <h3>
+                Prediction
+            </h3>
+
+            <p>
+                Use the trained model to predict
+                the community area.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CALL TO ACTION
+========================= -->
+
+<section class="cta">
+
+    <h2>
+        Ready to Make a Prediction?
+    </h2>
+
+    <p>
+        Enter the required crime-related information
+        and use the trained machine learning model
+        to predict the community area.
+    </p>
+
+    <a href="/predict">
+        🎯 Go to Prediction
+    </a>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+        Crime Area Prediction System
+    </p>
+
+    <p>
+        Criminal Data Analysis and Crime Area Prediction
+        Using Machine Learning
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

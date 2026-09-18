@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About - Crime Analysis</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #222;
+        }
+
+        .navbar {
+            background: #1f2937;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+
+        .navbar a:hover {
+            color: #60a5fa;
+        }
+
+        .header {
+            background: #2563eb;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+            font-size: 36px;
+        }
+
+        .header p {
+            font-size: 18px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            color: #1f2937;
+            margin-top: 0;
+        }
+
+        .section p {
+            line-height: 1.7;
+            color: #4b5563;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .feature {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #2563eb;
+        }
+
+        .feature h3 {
+            color: #2563eb;
+            margin-top: 0;
+        }
+
+        .technologies {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .tech {
+            background: #eef2ff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .footer {
+            background: #1f2937;
+            color: #d1d5db;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 800px) {
+            .features,
+            .technologies {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar a {
+                display: inline-block;
+                margin: 7px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+
+<div class="navbar">
+
+    <a href="/">Home</a>
+
+    <a href="/predict">Predict</a>
+
+    <a href="/work">Work</a>
+
+    <a href="/dashboard">Dashboard</a>
+
+    <a href="/about">About</a>
+
+    <a href="/contact">Contact</a>
+
+</div>
+
+
+<!-- Header -->
+
+<div class="header">
+
+    <h1>About the Project</h1>
+
+    <p>
+        Criminal Data Analysis and Crime Area Prediction Using Machine Learning
+    </p>
+
+</div>
+
+
+<div class="container">
+
+    <!-- Project Overview -->
+
+    <div class="section">
+
+        <h2>Project Overview</h2>
+
+        <p>
+            Criminal Data Analysis and Crime Area Prediction Using
+            Machine Learning is a data analysis and machine learning
+            project based on historical crime records.
+        </p>
+
+        <p>
+            The project analyzes crime patterns and develops a
+            machine learning model to predict the community area
+            associated with crime-related information.
+        </p>
+
+    </div>
+
+
+    <!-- Objective -->
+
+    <div class="section">
+
+        <h2>Project Objective</h2>
+
+        <p>
+            The main objective of this project is to analyze
+            historical crime data, identify meaningful patterns
+            and develop a machine learning-based system for
+            community area prediction.
+        </p>
+
+        <p>
+            The project also provides visual insights into crime
+            trends based on year, month, hour, crime type and
+            location.
+        </p>
+
+    </div>
+
+
+    <!-- Features -->
+
+    <div class="section">
+
+        <h2>Project Features</h2>
+
+        <div class="features">
+
+            <div class="feature">
+
+                <h3>Crime Data Analysis</h3>
+
+                <p>
+                    Analyze historical crime records and identify
+                    important crime patterns and trends.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>Data Visualization</h3>
+
+                <p>
+                    Display crime trends using charts for yearly,
+                    monthly, hourly and location-based analysis.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>Machine Learning</h3>
+
+                <p>
+                    Use a Random Forest model to learn patterns
+                    from historical crime data.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>Crime Area Prediction</h3>
+
+                <p>
+                    Predict a community area based on the
+                    information provided by the user.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Dataset -->
+
+    <div class="section">
+
+        <h2>Dataset</h2>
+
+        <p>
+            The project uses historical Chicago crime data.
+            The dataset contains crime-related information
+            including date, time, crime type, location,
+            police district, beat, ward and geographical
+            coordinates.
+        </p>
+
+        <p>
+            The data is processed and prepared before being
+            used for analysis and machine learning.
+        </p>
+
+    </div>
+
+
+    <!-- Machine Learning -->
+
+    <div class="section">
+
+        <h2>Machine Learning Model</h2>
+
+        <p>
+            A Random Forest machine learning algorithm is used
+            for community area prediction.
+        </p>
+
+        <p>
+            After training, the model is saved as a
+            <strong>PKL file</strong>. The Flask application
+            loads this trained model and uses it to generate
+            predictions from user input.
+        </p>
+
+    </div>
+
+
+    <!-- Technologies -->
+
+    <div class="section">
+
+        <h2>Technologies Used</h2>
+
+        <div class="technologies">
+
+            <div class="tech">
+                Python
+            </div>
+
+            <div class="tech">
+                Pandas
+            </div>
+
+            <div class="tech">
+                Scikit-learn
+            </div>
+
+            <div class="tech">
+                Random Forest
+            </div>
+
+            <div class="tech">
+                Flask
+            </div>
+
+            <div class="tech">
+                HTML & CSS
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- Footer -->
+
+<div class="footer">
+
+    Criminal Data Analysis and Crime Area Prediction Using Machine Learning
+
+</div>
+
+</body>
+</html>
