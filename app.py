@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import pandas as pd
 import joblib
 from datetime import datetime
+from huggingface_hub import hf_hub_download
 
 
 # =========================================================
@@ -15,7 +16,13 @@ app = Flask(__name__)
 # LOAD TRAINED MODEL
 # =========================================================
 
-model = joblib.load("models/area_random_forest_tuned.pkl")
+model_path = hf_hub_download(
+    repo_id="asarlanagesh/criminal-data-analysis-model",
+    filename="area_random_forest_tuned.pkl"
+)
+
+model = joblib.load(model_path)
+
 
 print("======================================")
 print("Crime Area Prediction System")
